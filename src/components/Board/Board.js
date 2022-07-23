@@ -5,7 +5,6 @@ import Task from "../task/Task";
 import "./Board.css";
 
 const Board = ({ boardData, isModalVisible, baseUrl }) => {
-  console.log(baseUrl);
   return (
     <>
       <div className="board">

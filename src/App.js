@@ -1,17 +1,17 @@
-import './App.css';
-import React, { useState, useEffect, useContext } from 'react';
-import Board from './components/Board/Board';
-import Sidebar from './components/Sidebar/Sidebar';
-import Nav from './components/Nav/Nav';
-import Modal from './components/Modal/Modal';
-import Dashboard from './components/Dashboard/Dashboard';
-import Register from './components/Register/Register';
-import Login from './components/Login/Login';
-import PrivateRoute from './components/PrivateRoute/PrivateRoute';
-import { Navigate } from 'react-router-dom';
-import { useAuth, AuthContext } from './contexts/AuthContext';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { decode } from 'jwt-decode';
+import "./App.css";
+import React, { useState, useEffect, useContext } from "react";
+import Board from "./components/Board/Board";
+import Sidebar from "./components/Sidebar/Sidebar";
+import Nav from "./components/Nav/Nav";
+import Modal from "./components/Modal/Modal";
+import Dashboard from "./components/Dashboard/Dashboard";
+import Register from "./components/Register/Register";
+import Login from "./components/Login/Login";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import { Navigate } from "react-router-dom";
+import { useAuth, AuthContext } from "./contexts/AuthContext";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 
 function App() {
   const [boardData, setBoardData] = useState();
@@ -19,20 +19,23 @@ function App() {
   const [isModalVisible, changeModalVisibility] = useState(false);
 
   const { state } = useAuth();
-  console.log(state.user);
+  // console.log(state.user);
   console.log(boardData);
 
   const baseUrl =
-    process.env.NODE_ENV === 'production'
-      ? 'https://kanban-board-full-stack.herokuapp.com'
-      : 'http://localhost:3001';
+    process.env.NODE_ENV === "production"
+      ? "https://kanban-server-rrich.herokuapp.com"
+      : "http://localhost:3001";
+
+  const token = localStorage.getItem("token");
+  // console.log(jwt_decode(token));
 
   useEffect(() => {
     fetch(`${baseUrl}/kanban-board-full-stack/api/boards`, {
-      method: 'GET',
+      method: "GET",
       headers: {
-        Accept: 'application/json, text/plain, */*',
-        'Content-Type': 'application/json',
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
       },
     })
       .then((response) => {
@@ -60,7 +63,7 @@ function App() {
                 exact
                 path="/dashboard"
                 element={
-                  state.user ? (
+                  token ? (
                     <Dashboard
                       baseUrl={baseUrl}
                       boardData={boardData}
@@ -77,15 +80,13 @@ function App() {
               <Route
                 exact
                 path="/login"
-                element={!state.user ? <Login /> : <Navigate to="/dashboard" />}
+                element={!token ? <Login /> : <Navigate to="/dashboard" />}
                 baseUrl={baseUrl}
               />
               <Route
                 exact
                 path="/register"
-                element={
-                  !state.user ? <Register /> : <Navigate to="/dashboard" />
-                }
+                element={!token ? <Register /> : <Navigate to="/dashboard" />}
                 baseUrl={baseUrl}
               />
             </Routes>
