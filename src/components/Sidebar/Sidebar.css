@@ -1,0 +1,149 @@
+.sidebar {
+    height: 100%;
+    width: 100%;
+    background:rgba(155, 151, 151, 0.25);
+    position: relative
+}
+
+.logo-container {
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-container span {
+    font-size: 2rem;
+    font-weight: bold
+}   
+
+.logo-container img {
+    height: 50px;
+    margin-right: 10px
+}
+
+.boards-list {
+    width: 100%;
+    /* padding: 20px; */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 20px
+}
+
+.all-boards {
+    margin-bottom: 50px;
+    color: rgba(100, 100, 100, 0.75);
+    font-weight: bold;
+    margin-left: 20px
+}
+
+.board-name-input {
+    height: 30px;
+    width: 90%
+}
+
+.board-name {
+    animation: 0.25s ease-out 0s 1 slide-in;
+    transition: 0.25s;
+}
+
+.board-name:hover {
+    color: gold
+}
+
+.board-name-logo {
+    display: flex;
+    align-items: center;
+    width: calc(100% - 20px);
+    color: white;
+    font-weight: bold;
+    margin-bottom: 30px;
+    margin-left: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+
+.board-name-logo img {
+    height: 25px;
+    margin-right: 10px;
+}
+
+.board-name-logo :nth-child(2) {
+    margin-left: 10px
+}
+
+.board-name-logo span {
+    font-size: 1rem;
+    color: rgba(100, 100, 100, 0.75);
+    margin-bottom: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    flex: 5
+}
+
+.board-name-input {
+    margin: 20px;
+    width: 75%;
+    border-radius: 5px;
+    animation: 0.25s ease-out 0s 1 slide-in
+}
+
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 100vw;
+        overflow-y: scroll;
+    }
+
+    .logo-container {
+        width: 100%
+    }
+
+    @keyframes slide-in-from-top {
+        0% {
+            transform: translateY(-50%);
+            opacity: 0;
+        }
+        100% {
+            transform: translateY(0);
+            opacity: 1
+        }
+    }
+
+    .boards-list {
+        display: none;
+        animation: 0.25s ease-out 0s 1 slide-in-from-top;
+    }
+
+    .logo-container {
+        height: 100px
+    }
+
+    .expand-btn {
+        height: 75px;
+        width: 75px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        margin-left: auto;
+        right: 0;
+        margin-right: auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .show {
+        display: block
+    }
+
+    .expand-btn span {
+        height: 5px;
+        width: 40px;
+        background: black;
+        margin-top: 5px
+    }
+}

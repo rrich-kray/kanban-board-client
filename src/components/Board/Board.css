@@ -1,0 +1,70 @@
+
+
+.board {
+  height: 90%;
+  flex: 6;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  background: rgb(12, 11, 11);
+  overflow: hidden;
+  /* background: rgba(138, 210, 237, 0.25) */
+}
+
+.col {
+    flex: 1;
+    min-width: 500px;
+    margin: 20px;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+  }
+  
+  .col > .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .col img {
+    height: 25px;
+    margin-right: 5px
+  }
+  
+  .col h1 {
+    color: rgba(100, 100, 100, 0.5);
+    font-size: 1rem;
+    text-align: start
+  }
+  
+  
+  @media screen and (max-width: 980px) {
+    .board {
+      display: flex;
+      flex-direction: column;
+      width: 100vw
+    }
+
+    .col {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin-top: 0;
+      margin-bottom: 0;
+      width: 100%;
+      max-width: 100%;
+      min-width: 90%;
+      margin: 0;
+      padding: 0
+    }
+
+    .tasks {
+      margin: 0;
+      padding: 0
+    }
+  }

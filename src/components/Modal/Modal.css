@@ -1,0 +1,58 @@
+.modal {
+    height: 400px;
+    width: 400px;
+    border-radius: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    border: 1px solid black;
+    z-index: 999;
+    background: rgba(100, 100, 100, 0.25);
+    transition-property: all;
+    transition: 0.25s;
+    animation: 0.25s ease-out 0s 1 slide-in
+}
+
+.add-post-form {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-post-form input {
+    width: 75%;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+#name {
+    height: 30px;
+}
+
+#description {
+    height: 200px;
+    overflow: scroll
+}
+
+.add-post-form button {
+    margin-top: 10px;
+    background: none;
+    border-radius: 5px;
+    height: 30px;
+    width: 100px;
+    background: rgb(60, 112, 161);
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.25s
+}
+
+.add-post-form button:hover {
+    color: white
+}

@@ -1,0 +1,24 @@
+.dashboard {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	position: relative;
+	overflow: hidden;
+}
+
+.sidebar-container {
+	flex: 1;
+	min-width: 300px;
+}
+
+.board-container {
+	flex: 6;
+}
+
+@media screen and (max-width: 768px) {
+	.app {
+		display: flex;
+		flex-direction: column;
+		overflow-y: scroll;
+	}
+}

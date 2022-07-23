@@ -1,0 +1,9 @@
+.app {
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	position: relative;
+	overflow: hidden;
+	background: rgb(12, 11, 11);
+	/* background: rgba(138, 210, 237, 0.25) */
+}

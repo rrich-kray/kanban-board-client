@@ -1,0 +1,75 @@
+.tasks {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.task {
+	position: relative;
+	display: grid;
+	grid-template-columns: 0.5fr 1fr 0.5fr;
+	grid-template-rows: 1fr;
+	width: 75%;
+	/* height: 50px; */
+	border-radius: 5px;
+	margin-bottom: 10px;
+	background: rgba(155, 151, 151, 0.25);
+	padding: 20px;
+	transition: 0.25s;
+	animation: 0.25s ease-out 0s 1 fade-in-from-top;
+}
+
+.task-name {
+	grid-column-start: 2;
+	grid-column-end: 2;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+}
+
+.delete-icon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	grid-column-start: 3;
+	grid-column-end: 3;
+}
+
+.arrows {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	grid-column-start: 1;
+	grid-column-end: 1;
+	grid-row-start: 1;
+	grid-row-end: 1;
+}
+
+.delete-task {
+	display: none;
+	height: 0;
+	width: 0;
+}
+
+/* .task:hover > .delete-task {
+    position: absolute;
+    top: 5%;
+    left: 5%
+  } */
+
+.task:hover {
+	background: rgba(100, 100, 100, 0.25);
+	cursor: pointer;
+}
+
+.task:hover > .task-name {
+	color: gold;
+}
+
+@media screen and (max-width: 768px) {
+}
