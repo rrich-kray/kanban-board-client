@@ -19,10 +19,7 @@ function App() {
   const [isModalVisible, changeModalVisibility] = useState(false);
   const [currentUser, setCurrentUser] = useState();
 
-  const baseUrl =
-    process.env.NODE_ENV === "production"
-      ? "https://kanban-server-rrich.herokuapp.com"
-      : "http://localhost:3001";
+  const baseUrl = "https://kanban-server-rrich.herokuapp.com";
 
   return (
     <>
