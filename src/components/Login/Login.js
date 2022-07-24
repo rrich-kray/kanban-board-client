@@ -1,13 +1,13 @@
-import axios from 'axios';
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext';
-import './Login.css';
+import axios from "axios";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
+import "./Login.css";
 
 const Login = ({ baseUrl }) => {
   const [formState, setFormState] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
   const { login } = useAuth();
@@ -16,10 +16,12 @@ const Login = ({ baseUrl }) => {
     e.preventDefault();
     axios
       .post(`${baseUrl}/kanban-board-full-stack/api/login`, {
-        formState,
+        email: formState.email,
+        password: formState.password,
       })
       .then((userData) => {
-        login(userData);
+        console.log(userData);
+        login(userData.data);
       })
       .catch((err) => {
         console.log(err);
@@ -36,7 +38,10 @@ const Login = ({ baseUrl }) => {
 
   return (
     <div className="login flex-row justify-center align-center">
-      <form className="login-form form flex-col justify-cenpter align-center">
+      <form
+        className="login-form form flex-col justify-cenpter align-center"
+        onSubmit={loginUser}
+      >
         <div className="email input">
           <label htmlFor="email">Email</label>
           <input name="email" id="email" onChange={handleChange} />
@@ -45,12 +50,12 @@ const Login = ({ baseUrl }) => {
           <label htmlFor="password">Password</label>
           <input name="password" id="password" onChange={handleChange} />
         </div>
-        <button className="login-btn" onClick={login}>
+        <button className="login-btn" onClick={loginUser}>
           Login
         </button>
         <div
           className="flex-row justify-center align-center"
-          style={{ width: '100%', color: 'white', marginTop: '10px' }}
+          style={{ width: "100%", color: "white", marginTop: "10px" }}
         >
           <span>
             Haven't registered yet? <Link to="/register">Register</Link>

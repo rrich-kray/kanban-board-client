@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
+import axios from "axios";
+import jwt_decode from "jwt-decode";
 import "./Sidebar.css";
 
 const Sidebar = ({ changeActiveBoardIndex, boardData, baseUrl }) => {
@@ -7,6 +9,7 @@ const Sidebar = ({ changeActiveBoardIndex, boardData, baseUrl }) => {
   const [isFormActive, activateForm] = useState();
   const [formState, setFormState] = useState({
     name: "",
+    user_id: jwt_decode(localStorage.getItem("token")).data[0],
   });
 
   const handleChange = (e) => {
@@ -18,49 +21,23 @@ const Sidebar = ({ changeActiveBoardIndex, boardData, baseUrl }) => {
   };
 
   const createBoard = () => {
-    fetch(`${baseUrl}/kanban-board-full-stack/api/boards`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formState),
-    })
+    axios
+      .post(`${baseUrl}/kanban-board-full-stack/api/boards`, {
+        name: formState.name,
+        user_id: formState.user_id,
+      })
       .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-      })
-      .then((data) => {
-        console.log(data);
-        window.location.replace("/");
-      })
-      .catch((err) => {
-        console.log(err);
+        console.log(response);
       });
   };
 
   const deleteBoard = (boardId) => {
-    fetch(`${baseUrl}/kanban-board-full-stack/api/boards`, {
-      method: "DELETE",
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ id: boardId }),
-    })
+    axios
+      .delete(`${baseUrl}/kanban-board-full-stack/api/boards`)
       .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
+        console.log(response);
       })
-      .then((data) => {
-        console.log(data);
-        window.location.replace("/");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((e) => console.log(e));
   };
 
   return (

@@ -5,6 +5,7 @@ import Task from "../task/Task";
 import "./Board.css";
 
 const Board = ({ boardData, isModalVisible, baseUrl }) => {
+  console.log(boardData);
   return (
     <>
       <div className="board">
@@ -17,7 +18,7 @@ const Board = ({ boardData, isModalVisible, baseUrl }) => {
             <h1 style={{ textAlign: "center", marginBottom: "20px" }}>Todo</h1>
           </div>
           <ul className="tasks">
-            {boardData &&
+            {boardData.length > 0 &&
               boardData[0].tasks
                 .filter((task) => task.progress === 0)
                 .map((task) => <Task baseUrl={baseUrl} task={task} />)}
@@ -34,7 +35,7 @@ const Board = ({ boardData, isModalVisible, baseUrl }) => {
             </h1>
           </div>
           <ul className="tasks">
-            {boardData &&
+            {boardData.length > 0 &&
               boardData[0].tasks
                 .filter((task) => task.progress === 1)
                 .map((task) => <Task baseUrl={baseUrl} task={task} />)}
@@ -51,7 +52,7 @@ const Board = ({ boardData, isModalVisible, baseUrl }) => {
             </h1>
           </div>
           <ul className="tasks">
-            {boardData &&
+            {boardData.length > 0 &&
               boardData[0].tasks
                 .filter((task) => task.progress === 2)
                 .map((task) => <Task baseUrl={baseUrl} task={task} />)}

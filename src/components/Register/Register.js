@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext';
-import axios from 'axios';
-import './Register.css';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
+import axios from "axios";
+import "./Register.css";
 
 const Register = ({ baseUrl }) => {
   const [formState, setFormState] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
   });
 
   const { login } = useAuth();
@@ -18,10 +18,14 @@ const Register = ({ baseUrl }) => {
     e.preventDefault();
     axios
       .post(`${baseUrl}/kanban-board-full-stack/api/register`, {
-        formState,
+        firstName: formState.firstName,
+        lastName: formState.lastName,
+        email: formState.email,
+        password: formState.password,
       })
       .then((userData) => {
-        login(userData);
+        login(userData.data);
+        window.location.replace("/dashboard");
       })
       .catch((err) => {
         console.log(err);
@@ -60,9 +64,9 @@ const Register = ({ baseUrl }) => {
         </button>
         <div
           className="flex-row justify-center align-center"
-          style={{ width: '100%', marginTop: '10px' }}
+          style={{ width: "100%", marginTop: "10px" }}
         >
-          <span style={{ color: 'white' }}>
+          <span style={{ color: "white" }}>
             Already registered? <Link to="/login">Login</Link>
           </span>
         </div>
