@@ -17,7 +17,7 @@ import axios from "axios";
 function App() {
   const [isModalVisible, changeModalVisibility] = useState(false);
   const [currentUser, setCurrentUser] = useState();
-  const baseUrl = "http://localhost:3001";
+  const baseUrl = "https://kanban-board-server-rrich.herokuapp.com";
 
   const { user } = useAuth();
   console.log(user);
