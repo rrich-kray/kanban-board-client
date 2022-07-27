@@ -30,7 +30,7 @@ const Sidebar = ({ changeActiveBoardIndex, boardData, baseUrl }) => {
       })
       .then((response) => {
         console.log(response);
-        // window.location.replace("/dashboard");
+        window.location.replace("/dashboard");
       });
   };
 
