@@ -36,7 +36,9 @@ const Sidebar = ({ changeActiveBoardIndex, boardData, baseUrl }) => {
 
   const deleteBoard = (boardId) => {
     axios
-      .delete(`${baseUrl}/kanban-board-full-stack/api/boards`)
+      .delete(`${baseUrl}/kanban-board-full-stack/api/boards`, {
+        board_id: boardId,
+      })
       .then((response) => {
         console.log(response);
         // window.location.replace("/dashboard");
