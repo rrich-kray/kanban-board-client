@@ -5,6 +5,7 @@ import axios from "axios";
 import "./Register.css";
 
 const Register = ({ baseUrl }) => {
+  const [error, setError] = useState();
   const [formState, setFormState] = useState({
     firstName: "",
     lastName: "",
