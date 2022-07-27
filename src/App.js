@@ -19,7 +19,7 @@ function App() {
   const [isModalVisible, changeModalVisibility] = useState(false);
   const [currentUser, setCurrentUser] = useState();
 
-  const baseUrl = "https://kanban-server-rrich.herokuapp.com";
+  const baseUrl = "https://kanban-board-server-rrich.herokuapp.com";
 
   return (
     <>
