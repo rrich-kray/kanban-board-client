@@ -65,6 +65,17 @@ function App() {
                 )
               }
             />
+            <Route
+              exact
+              path="/"
+              element={
+                localStorage.getItem("token") ? (
+                  <Navigate to="/dashboard" />
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
+            />
           </Routes>
         </Router>
       </div>
