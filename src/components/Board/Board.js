@@ -4,7 +4,7 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import Task from "../task/Task";
 import "./Board.css";
 
-const Board = ({ boardData, isModalVisible, baseUrl }) => {
+const Board = ({ boardData, isModalVisible, activeBoardIndex, baseUrl }) => {
   console.log(boardData);
   return (
     <>
@@ -19,7 +19,7 @@ const Board = ({ boardData, isModalVisible, baseUrl }) => {
           </div>
           <ul className="tasks">
             {boardData.length > 0 &&
-              boardData[0].tasks
+              boardData[activeBoardIndex].tasks
                 .filter((task) => task.progress === 0)
                 .map((task) => <Task baseUrl={baseUrl} task={task} />)}
           </ul>
@@ -36,7 +36,7 @@ const Board = ({ boardData, isModalVisible, baseUrl }) => {
           </div>
           <ul className="tasks">
             {boardData.length > 0 &&
-              boardData[0].tasks
+              boardData[activeBoardIndex].tasks
                 .filter((task) => task.progress === 1)
                 .map((task) => <Task baseUrl={baseUrl} task={task} />)}
           </ul>
@@ -53,7 +53,7 @@ const Board = ({ boardData, isModalVisible, baseUrl }) => {
           </div>
           <ul className="tasks">
             {boardData.length > 0 &&
-              boardData[0].tasks
+              boardData[activeBoardIndex].tasks
                 .filter((task) => task.progress === 2)
                 .map((task) => <Task baseUrl={baseUrl} task={task} />)}
           </ul>
