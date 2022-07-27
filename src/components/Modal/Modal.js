@@ -34,12 +34,8 @@ const Modal = ({
         board_id: formState.board_id,
       })
       .then((response) => {
-        if (response.ok) {
-          console.log(response);
-          // window.location.replace("/dashboard");
-          return;
-        }
-        console.log("Error creating task");
+        console.log(response);
+        window.location.replace("/dashboard");
       })
       .catch((err) => {
         console.error("Error", err);
