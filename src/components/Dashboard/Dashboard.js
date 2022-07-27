@@ -21,7 +21,7 @@ const Dashboard = ({ baseUrl, isModalVisible, changeModalVisibility }) => {
         .get(`${baseUrl}/kanban-board-full-stack/api/boards/${userId}`)
         .then((boardData) => {
           setBoardData(boardData.data);
-          changeActiveBoardIndex(boardData[0].id);
+          changeActiveBoardIndex(boardData.data[0].id);
         })
         .catch((err) => {
           console.log(err);
