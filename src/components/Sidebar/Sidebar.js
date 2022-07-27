@@ -12,6 +12,8 @@ const Sidebar = ({ changeActiveBoardIndex, boardData, baseUrl }) => {
     user_id: jwt_decode(localStorage.getItem("token")).data[0],
   });
 
+  console.log(jwt_decode(localStorage.getItem("token")));
+
   console.log(formState);
 
   const handleChange = (e) => {
