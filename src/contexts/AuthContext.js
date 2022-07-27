@@ -4,8 +4,8 @@ import jwt_decode from "jwt-decode";
 const token = localStorage.getItem("token");
 
 const ACTIONS = {
-  LOGIN: "login",
-  LOGOUT: "logout",
+  LOGIN: "LOGIN",
+  LOGOUT: "LOGOUT",
 };
 
 // Declare initial state

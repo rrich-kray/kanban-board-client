@@ -21,8 +21,8 @@ const Login = ({ baseUrl }) => {
         password: formState.password,
       })
       .then((response) => {
-        if (response.errors) {
-          setError(response.errors[0].message);
+        if (!response.data) {
+          setError("User does not exist");
           return;
         }
         login(response.data);
