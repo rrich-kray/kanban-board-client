@@ -32,8 +32,6 @@ function App() {
                 localStorage.getItem("token") ? (
                   <Dashboard
                     baseUrl={baseUrl}
-                    activeBoardIndex={activeBoardIndex}
-                    changeActiveBoardIndex={changeActiveBoardIndex}
                     isModalVisible={isModalVisible}
                     changeModalVisibility={changeModalVisibility}
                   />
