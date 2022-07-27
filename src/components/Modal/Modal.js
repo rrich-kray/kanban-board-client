@@ -36,7 +36,7 @@ const Modal = ({
       .then((response) => {
         if (response.ok) {
           console.log(response);
-          window.location.replace("/dashboard");
+          // window.location.replace("/dashboard");
           return;
         }
         console.log("Error creating task");
