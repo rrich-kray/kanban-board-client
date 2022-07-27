@@ -5,6 +5,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import "./Login.css";
 
 const Login = ({ baseUrl }) => {
+  const [error, setError] = useState();
   const [formState, setFormState] = useState({
     email: "",
     password: "",
@@ -20,8 +21,11 @@ const Login = ({ baseUrl }) => {
         password: formState.password,
       })
       .then((userData) => {
-        console.log(userData);
-        login(userData.data);
+        if (userData) {
+          login(userData.data);
+          return;
+        }
+        setError("Error logging in");
       })
       .catch((err) => {
         console.log(err);
@@ -42,6 +46,20 @@ const Login = ({ baseUrl }) => {
         className="login-form form flex-col justify-cenpter align-center"
         onSubmit={loginUser}
       >
+        {error && (
+          <div
+            style={{
+              width: "90%",
+              padding: "5px",
+              color: "red",
+              borderRadius: "5px",
+              color: "white",
+              fontWeight: "bold",
+            }}
+          >
+            {error}
+          </div>
+        )}
         <div className="email input">
           <label htmlFor="email">Email</label>
           <input name="email" id="email" onChange={handleChange} />

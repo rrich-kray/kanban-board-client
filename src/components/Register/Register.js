@@ -43,6 +43,20 @@ const Register = ({ baseUrl }) => {
   return (
     <div className="register flex-row justify-center align-center">
       <form className="register-form form flex-col justify-center align-center">
+        {error && (
+          <div
+            style={{
+              width: "90%",
+              padding: "5px",
+              color: "red",
+              borderRadius: "5px",
+              color: "white",
+              fontWeight: "bold",
+            }}
+          >
+            {error}
+          </div>
+        )}
         <div className="first-name input">
           <label htmlFor="firstName">First Name</label>
           <input name="firstName" id="firstName" onChange={handleChange} />
