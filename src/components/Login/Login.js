@@ -20,15 +20,16 @@ const Login = ({ baseUrl }) => {
         email: formState.email,
         password: formState.password,
       })
-      .then((userData) => {
-        if (userData) {
-          login(userData.data);
+      .then((response) => {
+        if (response.errors) {
+          setError(response.errors[0].message);
           return;
         }
-        setError("Error logging in");
+        login(response.data);
+        window.location.replace("/dashboard");
       })
       .catch((err) => {
-        console.log(err);
+        setError(err.message);
       });
   };
 
@@ -49,12 +50,15 @@ const Login = ({ baseUrl }) => {
         {error && (
           <div
             style={{
-              width: "90%",
+              width: "75%",
               padding: "5px",
-              color: "red",
+              background: "red",
               borderRadius: "5px",
               color: "white",
               fontWeight: "bold",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "Center",
             }}
           >
             {error}

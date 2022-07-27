@@ -24,8 +24,12 @@ const Register = ({ baseUrl }) => {
         email: formState.email,
         password: formState.password,
       })
-      .then((userData) => {
-        login(userData.data);
+      .then((response) => {
+        if (response.errors) {
+          setError(response.errors[0].message);
+          return;
+        }
+        login(response.data);
         window.location.replace("/dashboard");
       })
       .catch((err) => {
@@ -49,10 +53,13 @@ const Register = ({ baseUrl }) => {
             style={{
               width: "90%",
               padding: "5px",
-              color: "red",
+              background: "red",
               borderRadius: "5px",
               color: "white",
               fontWeight: "bold",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "Center",
             }}
           >
             {error}
