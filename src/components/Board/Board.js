@@ -19,7 +19,7 @@ const Board = ({ boardData, isModalVisible, activeBoardIndex, baseUrl }) => {
           </div>
           <ul className="tasks">
             {boardData.length > 0 &&
-              boardData[activeBoardIndex].tasks
+              boardData[0].tasks
                 .filter((task) => task.progress === 0)
                 .map((task) => <Task baseUrl={baseUrl} task={task} />)}
           </ul>
@@ -36,7 +36,7 @@ const Board = ({ boardData, isModalVisible, activeBoardIndex, baseUrl }) => {
           </div>
           <ul className="tasks">
             {boardData.length > 0 &&
-              boardData[activeBoardIndex].tasks
+              boardData[0].tasks
                 .filter((task) => task.progress === 1)
                 .map((task) => <Task baseUrl={baseUrl} task={task} />)}
           </ul>
@@ -53,7 +53,7 @@ const Board = ({ boardData, isModalVisible, activeBoardIndex, baseUrl }) => {
           </div>
           <ul className="tasks">
             {boardData.length > 0 &&
-              boardData[activeBoardIndex].tasks
+              boardData[0].tasks
                 .filter((task) => task.progress === 2)
                 .map((task) => <Task baseUrl={baseUrl} task={task} />)}
           </ul>
