@@ -12,9 +12,7 @@ const Sidebar = ({ changeActiveBoardIndex, boardData, baseUrl }) => {
     user_id: jwt_decode(localStorage.getItem("token")).data[0],
   });
 
-  console.log(jwt_decode(localStorage.getItem("token")));
-
-  console.log(formState);
+  console.log(baseUrl);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,8 +22,6 @@ const Sidebar = ({ changeActiveBoardIndex, boardData, baseUrl }) => {
     });
   };
 
-  // request is being made
-  // No content is returned
   const createBoard = () => {
     axios
       .post(`${baseUrl}/kanban-board-full-stack/api/boards`, {
@@ -34,7 +30,7 @@ const Sidebar = ({ changeActiveBoardIndex, boardData, baseUrl }) => {
       })
       .then((response) => {
         console.log(response);
-        window.location.replace("/dashboard");
+        // window.location.replace("/dashboard");
       });
   };
 
