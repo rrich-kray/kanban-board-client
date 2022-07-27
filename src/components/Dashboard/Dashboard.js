@@ -9,7 +9,7 @@ import "./Dashboard.css";
 
 const Dashboard = ({ baseUrl, isModalVisible, changeModalVisibility }) => {
   const [boardData, setBoardData] = useState();
-  const [activeBoardIndex, changeActiveBoardIndex] = useState(boardData[0].id);
+  const [activeBoardIndex, changeActiveBoardIndex] = useState(1);
   console.log(boardData);
   console.log(activeBoardIndex);
 
@@ -21,6 +21,7 @@ const Dashboard = ({ baseUrl, isModalVisible, changeModalVisibility }) => {
         .get(`${baseUrl}/kanban-board-full-stack/api/boards/${userId}`)
         .then((boardData) => {
           setBoardData(boardData.data);
+          changeActiveBoardIndex(boardData[0].id);
         })
         .catch((err) => {
           console.log(err);
