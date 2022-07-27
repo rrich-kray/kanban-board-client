@@ -90,8 +90,8 @@ const Modal = ({
             Completed
           </option>
         </select>
-        <button onClick={handleTaskSubmit}>Submit Task</button>
       </form>
+      <button onClick={handleTaskSubmit}>Submit Task</button>
     </div>
   );
 };
