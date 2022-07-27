@@ -12,7 +12,7 @@ const Modal = ({
     title: "",
     description: "",
     progress: "0",
-    board_id: "1",
+    board_id: boardData[0].id, // this board id must not exist
   });
 
   console.log(formState);
