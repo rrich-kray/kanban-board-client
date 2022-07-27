@@ -43,7 +43,7 @@ const Sidebar = ({ changeActiveBoardIndex, boardData, baseUrl }) => {
       .delete(`${baseUrl}/kanban-board-full-stack/api/boards`)
       .then((response) => {
         console.log(response);
-        window.location.replace("/dashboard");
+        // window.location.replace("/dashboard");
       })
       .catch((e) => console.log(e));
   };

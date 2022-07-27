@@ -10,8 +10,6 @@ import "./Dashboard.css";
 const Dashboard = ({ baseUrl, isModalVisible, changeModalVisibility }) => {
   const [boardData, setBoardData] = useState();
   const [activeBoardIndex, changeActiveBoardIndex] = useState(1);
-  console.log(boardData);
-  console.log(activeBoardIndex);
 
   useEffect(() => {
     const token = jwt_decode(localStorage.getItem("token"));
@@ -50,6 +48,7 @@ const Dashboard = ({ baseUrl, isModalVisible, changeModalVisibility }) => {
           </div>
           <div className="board-container">
             <Nav
+              boardData={boardData}
               activeBoardIndex={activeBoardIndex}
               isModalVisible={isModalVisible}
               changeModalVisibility={changeModalVisibility}

@@ -15,8 +15,6 @@ const Modal = ({
     board_id: boardData[0].id,
   });
 
-  console.log(formState);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormState({
@@ -86,8 +84,8 @@ const Modal = ({
             Completed
           </option>
         </select>
+        <button onClick={handleTaskSubmit}>Submit Task</button>
       </form>
-      <button onClick={handleTaskSubmit}>Submit Task</button>
     </div>
   );
 };
