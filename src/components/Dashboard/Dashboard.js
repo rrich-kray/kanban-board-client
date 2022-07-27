@@ -7,13 +7,7 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import "./Dashboard.css";
 
-const Dashboard = ({
-  baseUrl,
-  activeBoardIndex,
-  changeActiveBoardIndex,
-  isModalVisible,
-  changeModalVisibility,
-}) => {
+const Dashboard = ({ baseUrl, isModalVisible, changeModalVisibility }) => {
   const [boardData, setBoardData] = useState();
   const [activeBoardIndex, changeActiveBoardIndex] = useState(boardData[0].id);
   console.log(boardData);
