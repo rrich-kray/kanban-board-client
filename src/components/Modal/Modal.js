@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./Modal.css";
 
 const Modal = ({
@@ -25,18 +26,20 @@ const Modal = ({
   };
 
   const handleTaskSubmit = (e) => {
-    fetch(`${baseUrl}/kanban-board-full-stack/api/tasks`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formState),
-    })
+    axios
+      .post(`${baseUrl}/kanban-board-full-stack/api/tasks`, {
+        title: formState.title,
+        description: formState.description,
+        progress: formState.progress,
+        board_id: formState.board_id,
+      })
       .then((response) => {
         if (response.ok) {
           console.log(response);
+          window.location.replace("/dashboard");
+          return;
         }
+        console.log("Error creating task");
       })
       .catch((err) => {
         console.error("Error", err);
