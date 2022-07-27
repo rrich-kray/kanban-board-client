@@ -15,6 +15,7 @@ const Dashboard = ({
   changeModalVisibility,
 }) => {
   const [boardData, setBoardData] = useState();
+  const [activeBoardIndex, changeActiveBoardIndex] = useState(boardData[0].id);
   console.log(boardData);
   console.log(activeBoardIndex);
 

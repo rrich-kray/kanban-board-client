@@ -15,7 +15,6 @@ import jwt_decode from "jwt-decode";
 import axios from "axios";
 
 function App() {
-  const [activeBoardIndex, changeActiveBoardIndex] = useState(0);
   const [isModalVisible, changeModalVisibility] = useState(false);
   const [currentUser, setCurrentUser] = useState();
 

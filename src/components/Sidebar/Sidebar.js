@@ -69,7 +69,7 @@ const Sidebar = ({ changeActiveBoardIndex, boardData, baseUrl }) => {
             <div
               className="board-name-logo"
               key={board.id}
-              onClick={() => changeActiveBoardIndex(boardData.indexOf(board))}
+              onClick={() => changeActiveBoardIndex(board.id)}
             >
               <img
                 src="https://www.svgrepo.com/show/19189/notebook.svg"
