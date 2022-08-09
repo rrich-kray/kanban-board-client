@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import "./Login.css";
 
-const Login = ({ baseUrl }) => {
+const Login = ({ baseUrl, currentUser, setCurrentUser }) => {
   const [error, setError] = useState();
   const [formState, setFormState] = useState({
     email: "",
@@ -26,6 +26,7 @@ const Login = ({ baseUrl }) => {
           return;
         }
         login(response.data);
+        setCurrentUser(response.data);
         window.location.replace("/dashboard");
       })
       .catch((err) => {

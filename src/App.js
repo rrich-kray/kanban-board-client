@@ -16,11 +16,13 @@ import axios from "axios";
 
 function App() {
   const [isModalVisible, changeModalVisibility] = useState(false);
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUser, setCurrentUser] = useState([]);
   const baseUrl = "https://kanban-board-server-rrich.herokuapp.com";
+  // const baseUrl = "http://localhost:3001";
 
-  const { user } = useAuth();
-  console.log(user);
+  // state does not update. still
+  // could be issue with React Router
+  console.log(currentUser);
 
   return (
     <>
@@ -47,7 +49,11 @@ function App() {
               path="/login"
               element={
                 !localStorage.getItem("token") ? (
-                  <Login baseUrl={baseUrl} />
+                  <Login
+                    baseUrl={baseUrl}
+                    currentUser={currentUser}
+                    setCurrentUser={setCurrentUser}
+                  />
                 ) : (
                   <Navigate to="/dashboard" />
                 )
@@ -58,7 +64,11 @@ function App() {
               path="/register"
               element={
                 !localStorage.getItem("token") ? (
-                  <Register baseUrl={baseUrl} />
+                  <Register
+                    baseUrl={baseUrl}
+                    currentUser={currentUser}
+                    setCurrentUser={setCurrentUser}
+                  />
                 ) : (
                   <Navigate to="/dashboard" />
                 )
