@@ -17,8 +17,8 @@ import axios from "axios";
 function App() {
   const [isModalVisible, changeModalVisibility] = useState(false);
   const [currentUser, setCurrentUser] = useState([]);
-  const baseUrl = "https://kanban-board-server-rrich.herokuapp.com";
-  // const baseUrl = "http://localhost:3001";
+  // const baseUrl = "https://kanban-board-server-rrich.herokuapp.com";
+  const baseUrl = "http://localhost:3001";
 
   // state does not update. still
   // could be issue with React Router
