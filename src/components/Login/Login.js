@@ -13,25 +13,30 @@ const Login = ({ baseUrl, currentUser, setCurrentUser }) => {
 
   const { login } = useAuth();
 
-  const loginUser = (e) => {
+  const loginUser = async (e) => {
     e.preventDefault();
-    axios
-      .post(`${baseUrl}/kanban-board-full-stack/api/login`, {
+
+    if (!formState.email || !formState.password) {
+      setError("You cannot leave the email/password field(s) blank.");
+      return;
+    }
+
+    const response = await axios.post(
+      `${baseUrl}/kanban-board-full-stack/api/login`,
+      {
         email: formState.email,
         password: formState.password,
-      })
-      .then((response) => {
-        if (!response.data) {
-          setError("User does not exist");
-          return;
-        }
-        login(response.data);
-        setCurrentUser(response.data);
-        window.location.replace("/dashboard");
-      })
-      .catch((err) => {
-        setError(err.message);
-      });
+      }
+    );
+
+    if (response.data.errorMessage) {
+      setError(response.data.errorMessage);
+      return;
+    }
+
+    login(response.data);
+    setCurrentUser(response.data);
+    window.location.replace("/dashboard");
   };
 
   const handleChange = (e) => {
