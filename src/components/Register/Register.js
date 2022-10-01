@@ -5,7 +5,7 @@ import axios from "axios";
 import "./Register.css";
 
 const Register = ({ baseUrl }) => {
-  const [error, setError] = useState();
+  const [error, setError] = useState([]);
   const [formState, setFormState] = useState({
     firstName: "",
     lastName: "",
@@ -15,26 +15,46 @@ const Register = ({ baseUrl }) => {
 
   const { login } = useAuth();
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    axios
-      .post(`${baseUrl}/kanban-board-full-stack/api/register`, {
+    const tempErrorsArr = [];
+    if (!formState.firstName) {
+      tempErrorsArr.push("You must provide a first name.");
+    }
+    if (!formState.lastName) {
+      tempErrorsArr.push("You must provide a last name.");
+    }
+    if (!formState.email) {
+      tempErrorsArr.push("You must provide an email address.");
+    }
+    if (!formState.password) {
+      tempErrorsArr.push("You must provide a password.");
+    }
+
+    if (tempErrorsArr.length > 0) {
+      setError(tempErrorsArr);
+      return;
+    }
+    const userData = await axios.post(
+      `${baseUrl}/kanban-board-full-stack/api/register`,
+      {
         firstName: formState.firstName,
         lastName: formState.lastName,
         email: formState.email,
         password: formState.password,
-      })
-      .then((response) => {
-        if (response.errors) {
-          setError(response.errors[0].message);
-          return;
-        }
-        login(response.data);
-        window.location.replace("/dashboard");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      }
+    );
+
+    console.log(userData);
+
+    if (userData.data.errorMessage) {
+      setError([userData.data.errorMessage]);
+      return;
+    }
+
+    localStorage.setItem("user", JSON.stringify(userData.data.user));
+    localStorage.setItem("token", userData.data.token);
+    window.location.replace("/dashboard");
   };
 
   const handleChange = (e) => {
@@ -48,23 +68,25 @@ const Register = ({ baseUrl }) => {
   return (
     <div className="register flex-row justify-center align-center">
       <form className="register-form form flex-col justify-center align-center">
-        {error && (
-          <div
-            style={{
-              width: "90%",
-              padding: "5px",
-              background: "red",
-              borderRadius: "5px",
-              color: "white",
-              fontWeight: "bold",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "Center",
-            }}
-          >
-            {error}
-          </div>
-        )}
+        {error &&
+          error.map((error) => (
+            <div
+              style={{
+                width: "90%",
+                padding: "5px",
+                background: "red",
+                borderRadius: "5px",
+                color: "white",
+                fontWeight: "bold",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "Center",
+                marginBottom: "10px",
+              }}
+            >
+              {error}
+            </div>
+          ))}
         <div className="first-name input">
           <label htmlFor="firstName">First Name</label>
           <input name="firstName" id="firstName" onChange={handleChange} />

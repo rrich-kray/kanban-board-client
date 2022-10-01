@@ -3,7 +3,6 @@ import { useAuth } from "../../contexts/AuthContext";
 import "./Nav.css";
 
 const Nav = ({ isModalVisible, changeModalVisibility, boardData }) => {
-  const { logout } = useAuth();
   return (
     <div className="nav flex-row justify-end">
       <div className="nav-btn-container flex-row justify-center align-center">
@@ -15,7 +14,14 @@ const Nav = ({ isModalVisible, changeModalVisibility, boardData }) => {
             + Create Task
           </button>
         )}
-        <button id="logout-btn" onClick={() => logout()}>
+        <button
+          id="logout-btn"
+          onClick={() => {
+            localStorage.removeItem("user");
+            localStorage.removeItem("token");
+            window.location.replace("/");
+          }}
+        >
           Logout
         </button>
       </div>

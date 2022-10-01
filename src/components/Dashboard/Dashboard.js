@@ -8,15 +8,23 @@ import jwt_decode from "jwt-decode";
 import "./Dashboard.css";
 
 const Dashboard = ({ baseUrl, isModalVisible, changeModalVisibility }) => {
-  const [boardData, setBoardData] = useState();
+  const [boardData, setBoardData] = useState([]);
   const [activeBoardIndex, changeActiveBoardIndex] = useState(1);
 
+  let config = {
+    headers: {
+      Authorization: `Bearer ${
+        localStorage.getItem("token") ? localStorage.getItem("token") : ""
+      }`,
+    },
+  };
+
   useEffect(() => {
-    const token = jwt_decode(localStorage.getItem("token"));
-    if (token) {
-      const userId = token.data[0];
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      const userId = user.id;
       axios
-        .get(`${baseUrl}/kanban-board-full-stack/api/boards/${userId}`)
+        .get(`${baseUrl}/kanban-board-full-stack/api/boards/${userId}`, config)
         .then((boardData) => {
           setBoardData(boardData.data);
           changeActiveBoardIndex(boardData.data[0].id);
@@ -29,39 +37,37 @@ const Dashboard = ({ baseUrl, isModalVisible, changeModalVisibility }) => {
 
   return (
     <div className="dashboard">
-      {boardData && (
-        <>
-          {isModalVisible && (
-            <Modal
-              baseUrl={baseUrl}
-              boardData={boardData}
-              activeBoardIndex={activeBoardIndex}
-              changeActiveBoardIndex={changeActiveBoardIndex}
-            />
-          )}
-          <div className="sidebar-container">
-            <Sidebar
-              baseUrl={baseUrl}
-              boardData={boardData}
-              changeActiveBoardIndex={changeActiveBoardIndex}
-            />
-          </div>
-          <div className="board-container">
-            <Nav
-              boardData={boardData}
-              activeBoardIndex={activeBoardIndex}
-              isModalVisible={isModalVisible}
-              changeModalVisibility={changeModalVisibility}
-            />
-            <Board
-              baseUrl={baseUrl}
-              boardData={boardData.filter(
-                (board) => board.id === activeBoardIndex
-              )}
-            />
-          </div>
-        </>
-      )}
+      <>
+        {isModalVisible && (
+          <Modal
+            baseUrl={baseUrl}
+            boardData={boardData}
+            activeBoardIndex={activeBoardIndex}
+            changeActiveBoardIndex={changeActiveBoardIndex}
+          />
+        )}
+        <div className="sidebar-container">
+          <Sidebar
+            baseUrl={baseUrl}
+            boardData={boardData}
+            changeActiveBoardIndex={changeActiveBoardIndex}
+          />
+        </div>
+        <div className="board-container">
+          <Nav
+            boardData={boardData}
+            activeBoardIndex={activeBoardIndex}
+            isModalVisible={isModalVisible}
+            changeModalVisibility={changeModalVisibility}
+          />
+          <Board
+            baseUrl={baseUrl}
+            boardData={boardData.filter(
+              (board) => board.id === activeBoardIndex
+            )}
+          />
+        </div>
+      </>
     </div>
   );
 };

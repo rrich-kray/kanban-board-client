@@ -34,8 +34,8 @@ const Login = ({ baseUrl, currentUser, setCurrentUser }) => {
       return;
     }
 
-    login(response.data);
-    setCurrentUser(response.data);
+    localStorage.setItem("userData", JSON.stringify(response.data.user));
+    localStorage.setItem("token", response.data.token);
     window.location.replace("/dashboard");
   };
 
