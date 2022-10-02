@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../../contexts/AuthContext";
-import "./Nav.css";
+import styles from "./styles.module.scss";
 
 const Nav = ({ isModalVisible, changeModalVisibility, boardData }) => {
+  console.log(boardData);
   return (
-    <div className="nav flex-row justify-end">
-      <div className="nav-btn-container flex-row justify-center align-center">
+    <div className={styles.nav}>
+      <div className={styles.boardNameContainer}>{boardData.name}</div>
+      <div className={styles.navBtnContainer}>
         {boardData.length > 0 && (
           <button
-            className="add-task-btn"
+            className={styles.navBtn}
             onClick={() => changeModalVisibility(!isModalVisible)}
           >
             + Create Task
           </button>
         )}
         <button
-          id="logout-btn"
+          className={styles.navBtn}
           onClick={() => {
             localStorage.removeItem("user");
             localStorage.removeItem("token");

@@ -1,8 +1,9 @@
 .sidebar {
     height: 100%;
     width: 100%;
-    background:rgba(155, 151, 151, 0.25);
-    position: relative
+    background:#2C2C38;
+    position: relative;
+    border-right: 1px solid rgba(100, 100, 100, 0.25);
 }
 
 .logo-container {
@@ -67,7 +68,7 @@
 
 
 .board-name-logo img {
-    height: 25px;
+    height: 20px;
     margin-right: 10px;
 }
 

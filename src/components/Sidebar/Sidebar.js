@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import logo from "./icon-show-sidebar.svg";
+import boardIcon from "./icon-board.svg";
 import "./Sidebar.css";
 
 const Sidebar = ({ changeActiveBoardIndex, boardData, baseUrl }) => {
@@ -9,10 +11,10 @@ const Sidebar = ({ changeActiveBoardIndex, boardData, baseUrl }) => {
   const [isFormActive, activateForm] = useState();
   const [formState, setFormState] = useState({
     name: "",
-    user_id: jwt_decode(localStorage.getItem("token")).data[0],
+    user_id: JSON.parse(localStorage.getItem("userData")).id,
   });
 
-  console.log(baseUrl);
+  console.log(boardData);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,7 +32,7 @@ const Sidebar = ({ changeActiveBoardIndex, boardData, baseUrl }) => {
       })
       .then((response) => {
         console.log(response);
-        window.location.replace("/dashboard");
+        // window.location.replace("/dashboard");
       });
   };
 
@@ -49,7 +51,7 @@ const Sidebar = ({ changeActiveBoardIndex, boardData, baseUrl }) => {
   return (
     <div className="sidebar">
       <div className="logo-container">
-        <img src="https://www.svgrepo.com/show/96059/logo.svg" alt="icon"></img>
+        <img src={logo} alt="icon"></img>
         <span
           onClick={() =>
             document.querySelector(".boards-list").classList.toggle("show")
@@ -69,10 +71,7 @@ const Sidebar = ({ changeActiveBoardIndex, boardData, baseUrl }) => {
               key={board.id}
               onClick={() => changeActiveBoardIndex(board.id)}
             >
-              <img
-                src="https://www.svgrepo.com/show/19189/notebook.svg"
-                alt="notebook-icon"
-              ></img>
+              <img src={boardIcon} alt="notebook-icon"></img>
               {board.name}
               <DeleteIcon onClick={() => deleteBoard(board.id)} />
             </div>

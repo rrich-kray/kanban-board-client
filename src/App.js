@@ -13,12 +13,26 @@ import { useAuth, AuthContext } from "./contexts/AuthContext";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
+import { config } from "./utils/helpers";
 
 function App() {
   const [isModalVisible, changeModalVisibility] = useState(false);
   const [currentUser, setCurrentUser] = useState([]);
+  const [isTokenVerified, setIsTokenVerified] = useState(false);
   // const baseUrl = "https://kanban-board-server-rrich.herokuapp.com";
   const baseUrl = "http://localhost:3001";
+
+  useEffect(() => {
+    axios
+      .get(`${baseUrl}/kanban-board-full-stack/api/verify`, config)
+      .then((response) => {
+        if (response.data.errorMessage) {
+          setIsTokenVerified(false);
+          return;
+        }
+        setIsTokenVerified(true);
+      });
+  }, []);
 
   return (
     <>
@@ -29,7 +43,7 @@ function App() {
               exact
               path="/dashboard"
               element={
-                localStorage.getItem("token") ? (
+                isTokenVerified ? (
                   <Dashboard
                     baseUrl={baseUrl}
                     isModalVisible={isModalVisible}
@@ -44,7 +58,7 @@ function App() {
               exact
               path="/login"
               element={
-                !localStorage.getItem("token") ? (
+                !isTokenVerified ? (
                   <Login
                     baseUrl={baseUrl}
                     currentUser={currentUser}
@@ -59,7 +73,7 @@ function App() {
               exact
               path="/register"
               element={
-                !localStorage.getItem("token") ? (
+                !isTokenVerified ? (
                   <Register
                     baseUrl={baseUrl}
                     currentUser={currentUser}
@@ -74,7 +88,7 @@ function App() {
               exact
               path="/"
               element={
-                localStorage.getItem("token") ? (
+                isTokenVerified ? (
                   <Navigate to="/dashboard" />
                 ) : (
                   <Navigate to="/login" />

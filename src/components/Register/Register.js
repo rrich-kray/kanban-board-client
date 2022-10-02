@@ -45,8 +45,6 @@ const Register = ({ baseUrl }) => {
       }
     );
 
-    console.log(userData);
-
     if (userData.data.errorMessage) {
       setError([userData.data.errorMessage]);
       return;
