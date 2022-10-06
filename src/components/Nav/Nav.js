@@ -19,7 +19,7 @@ const Nav = ({ isModalVisible, changeModalVisibility, boardData }) => {
         <button
           className={styles.navBtn}
           onClick={() => {
-            localStorage.removeItem("user");
+            localStorage.removeItem("userData");
             localStorage.removeItem("token");
             window.location.replace("/");
           }}

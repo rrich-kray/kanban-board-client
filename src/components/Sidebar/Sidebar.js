@@ -4,6 +4,7 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import logo from "./icon-show-sidebar.svg";
 import boardIcon from "./icon-board.svg";
+import { config } from "../../utils/helpers";
 import "./Sidebar.css";
 
 const Sidebar = ({ changeActiveBoardIndex, boardData, baseUrl }) => {
@@ -11,10 +12,7 @@ const Sidebar = ({ changeActiveBoardIndex, boardData, baseUrl }) => {
   const [isFormActive, activateForm] = useState();
   const [formState, setFormState] = useState({
     name: "",
-    user_id: JSON.parse(localStorage.getItem("userData")).id,
   });
-
-  console.log(boardData);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,24 +24,33 @@ const Sidebar = ({ changeActiveBoardIndex, boardData, baseUrl }) => {
 
   const createBoard = () => {
     axios
-      .post(`${baseUrl}/kanban-board-full-stack/api/boards`, {
-        name: formState.name,
-        user_id: formState.user_id,
-      })
+      .post(
+        `${baseUrl}/kanban-board-full-stack/api/boards`,
+        {
+          name: formState.name,
+        },
+        config
+      )
       .then((response) => {
         console.log(response);
         // window.location.replace("/dashboard");
       });
   };
 
-  const deleteBoard = (boardId) => {
-    axios
-      .delete(`${baseUrl}/kanban-board-full-stack/api/boards`, {
-        board_id: boardId,
-      })
+  const deleteBoard = async (boardId) => {
+    fetch(`${baseUrl}/kanban-board-full-stack/api/boards`, {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${JSON.stringify(
+          localStorage.getItem("token")
+        )}`,
+      },
+      body: JSON.stringify({ board_id: boardId }),
+    })
       .then((response) => {
         console.log(response);
-        // window.location.replace("/dashboard");
       })
       .catch((e) => console.log(e));
   };

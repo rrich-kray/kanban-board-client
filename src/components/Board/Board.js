@@ -5,7 +5,6 @@ import Task from "../task/Task";
 import styles from "./styles.module.scss";
 
 const Board = ({ boardData, isModalVisible, activeBoardIndex, baseUrl }) => {
-  console.log(boardData);
   // Can refactor these into a board column component
   return (
     <>

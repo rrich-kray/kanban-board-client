@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import DeleteIcon from "@mui/icons-material/Delete";
+import axios from "axios";
+import { config } from "../../utils/helpers";
 import "./Task.css";
 
 const Task = ({ task, baseUrl }) => {
-  console.log(baseUrl);
   const deleteTask = (taskId) => {
     // e.preventDefault();
     fetch(`${baseUrl}/kanban-board-full-stack/api/tasks`, {
@@ -13,14 +14,10 @@ const Task = ({ task, baseUrl }) => {
       headers: {
         Accept: "application/json, text/plain, */*",
         "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify({ task_id: taskId }),
     })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-      })
       .then((data) => {
         console.log(data);
         window.location.replace("/");
@@ -53,6 +50,7 @@ const Task = ({ task, baseUrl }) => {
       headers: {
         Accept: "application/json, text/plain, */*",
         "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify({ task_id: task.id, progress: newTaskProgress }),
     });

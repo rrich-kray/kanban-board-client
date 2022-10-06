@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { config } from "../../utils/helpers";
 import "./Modal.css";
 
 const Modal = ({
@@ -25,12 +26,16 @@ const Modal = ({
 
   const handleTaskSubmit = (e) => {
     axios
-      .post(`${baseUrl}/kanban-board-full-stack/api/tasks`, {
-        title: formState.title,
-        description: formState.description,
-        progress: formState.progress,
-        board_id: formState.board_id,
-      })
+      .post(
+        `${baseUrl}/kanban-board-full-stack/api/tasks`,
+        {
+          title: formState.title,
+          description: formState.description,
+          progress: formState.progress,
+          board_id: formState.board_id,
+        },
+        config
+      )
       .then((response) => {
         console.log(response);
         window.location.replace("/dashboard");
