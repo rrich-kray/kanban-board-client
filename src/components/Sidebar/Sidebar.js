@@ -5,6 +5,7 @@ import jwt_decode from "jwt-decode";
 import logo from "./icon-show-sidebar.svg";
 import boardIcon from "./icon-board.svg";
 import { config } from "../../utils/helpers";
+import { fetchData, headers } from "../../utils/helpers";
 import "./Sidebar.css";
 
 const Sidebar = ({ changeActiveBoardIndex, boardData, baseUrl }) => {
@@ -37,24 +38,6 @@ const Sidebar = ({ changeActiveBoardIndex, boardData, baseUrl }) => {
       });
   };
 
-  const deleteBoard = async (boardId) => {
-    fetch(`${baseUrl}/kanban-board-full-stack/api/boards`, {
-      method: "DELETE",
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${JSON.stringify(
-          localStorage.getItem("token")
-        )}`,
-      },
-      body: JSON.stringify({ board_id: boardId }),
-    })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((e) => console.log(e));
-  };
-
   return (
     <div className="sidebar">
       <div className="logo-container">
@@ -80,7 +63,16 @@ const Sidebar = ({ changeActiveBoardIndex, boardData, baseUrl }) => {
             >
               <img src={boardIcon} alt="notebook-icon"></img>
               {board.name}
-              <DeleteIcon onClick={() => deleteBoard(board.id)} />
+              <DeleteIcon
+                onClick={() =>
+                  fetchData(
+                    `${baseUrl}/kanban-board-full-stack/api/boards`,
+                    "DELETE",
+                    headers,
+                    { board_id: board.id }
+                  )
+                }
+              />
             </div>
           ))}
         <span
@@ -114,7 +106,14 @@ const Sidebar = ({ changeActiveBoardIndex, boardData, baseUrl }) => {
                 height: "35px",
                 animation: "0.25s ease-out 0s 1 slide-in",
               }}
-              onClick={() => createBoard()}
+              onClick={() =>
+                fetchData(
+                  `${baseUrl}/kanban-board-full-stack/api/boards`,
+                  "POST",
+                  headers,
+                  { name: formState.name }
+                )
+              }
             >
               Submit
             </button>

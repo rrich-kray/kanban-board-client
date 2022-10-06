@@ -1,23 +1,16 @@
-export const fetchModify = (url, type, content) => {
-  return fetch(url, {
-    method: "POST",
-    headers: {
-      Accept: "application/json, text/plain, */*",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(content),
-  });
+export const headers = {
+  Accept: "application/json, text/plain, */*",
+  "Content-Type": "application/json",
+  Authorization: `Bearer ${localStorage.getItem("token")}`,
 };
 
-export const fetchGet = (url) => {
-  return fetch(url, {
-    method: "GET",
-    headers: {
-      Accept: "application/json, text/plain, */*",
-      "Content-Type": "application/json",
-    },
+export async function fetchData(url, method, headers, body = null) {
+  return await fetch(url, {
+    method: method,
+    headers: headers,
+    body: JSON.stringify(body),
   });
-};
+}
 
 export const config = {
   headers: {
