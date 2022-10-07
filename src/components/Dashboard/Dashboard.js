@@ -40,6 +40,7 @@ const Dashboard = ({ baseUrl, isModalVisible, changeModalVisibility }) => {
           <Sidebar
             baseUrl={baseUrl}
             boardData={boardData}
+            activeBoardIndex={activeBoardIndex}
             changeActiveBoardIndex={changeActiveBoardIndex}
           />
         </div>
