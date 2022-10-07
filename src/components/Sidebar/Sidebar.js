@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-import logo from "./icon-show-sidebar.svg";
+import logo from "./icon-vertical-ellipsis.svg";
 import boardIcon from "./icon-board.svg";
 import { config } from "../../utils/helpers";
 import { fetchData, headers } from "../../utils/helpers";
