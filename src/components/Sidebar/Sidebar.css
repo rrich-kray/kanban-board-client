@@ -54,19 +54,18 @@
 }
 
 .board-name-logo {
-    height: 30px;
     font-size: 1rem;
     display: flex;
-    justify-items: center;
     align-items: center;
     width: calc(100% - 20px);
     color: white;
     font-weight: bold;
-    /* margin-bottom: 30px;
-    margin-left: 20px; */
+    margin-bottom: 30px;
+    margin-left: 20px;
     cursor: pointer;
     display: flex;
     align-items: center;
+
 }
 
 .board-name-logo-content {
