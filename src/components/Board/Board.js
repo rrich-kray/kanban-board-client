@@ -4,7 +4,7 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import Task from "../task/Task";
 import styles from "./styles.module.scss";
 
-const Board = ({ boardData, isModalVisible, activeBoardIndex, baseUrl }) => {
+const Board = ({ boardData, baseUrl }) => {
   // Can refactor these into a board column component
   return (
     <>

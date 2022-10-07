@@ -5,17 +5,18 @@ import Nav from "../Nav/Nav";
 import Board from "../Board/Board";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-import { config } from "../../utils/helpers";
+import { config, fetchData, fetchDataGet, headers } from "../../utils/helpers";
 import "./Dashboard.css";
 
 const Dashboard = ({ baseUrl, isModalVisible, changeModalVisibility }) => {
   const [boardData, setBoardData] = useState([]);
   const [activeBoardIndex, changeActiveBoardIndex] = useState(1);
+
+  // fetch board data on component load
   useEffect(() => {
     axios
       .get(`${baseUrl}/kanban-board-full-stack/api/boards/userBoards`, config)
       .then((boardData) => {
-        console.log(boardData);
         setBoardData(boardData.data);
         changeActiveBoardIndex(boardData.data[0].id);
       })

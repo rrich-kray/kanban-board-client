@@ -23,21 +23,6 @@ const Sidebar = ({ changeActiveBoardIndex, boardData, baseUrl }) => {
     });
   };
 
-  const createBoard = () => {
-    axios
-      .post(
-        `${baseUrl}/kanban-board-full-stack/api/boards`,
-        {
-          name: formState.name,
-        },
-        config
-      )
-      .then((response) => {
-        console.log(response);
-        // window.location.replace("/dashboard");
-      });
-  };
-
   return (
     <div className="sidebar">
       <div className="logo-container">
@@ -64,14 +49,15 @@ const Sidebar = ({ changeActiveBoardIndex, boardData, baseUrl }) => {
               <img src={boardIcon} alt="notebook-icon"></img>
               {board.name}
               <DeleteIcon
-                onClick={() =>
+                onClick={() => {
                   fetchData(
                     `${baseUrl}/kanban-board-full-stack/api/boards`,
                     "DELETE",
                     headers,
                     { board_id: board.id }
-                  )
-                }
+                  );
+                  window.location.replace("/");
+                }}
               />
             </div>
           ))}
@@ -106,14 +92,15 @@ const Sidebar = ({ changeActiveBoardIndex, boardData, baseUrl }) => {
                 height: "35px",
                 animation: "0.25s ease-out 0s 1 slide-in",
               }}
-              onClick={() =>
+              onClick={() => {
                 fetchData(
                   `${baseUrl}/kanban-board-full-stack/api/boards`,
                   "POST",
                   headers,
                   { name: formState.name }
-                )
-              }
+                );
+                window.location.replace("/");
+              }}
             >
               Submit
             </button>

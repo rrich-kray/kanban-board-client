@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import axios from "axios";
+import { fetchData } from "../../utils/helpers";
 import "./Register.css";
 
 const Register = ({ baseUrl }) => {
