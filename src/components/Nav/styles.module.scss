@@ -41,6 +41,21 @@
 }
 
 @media screen and (max-width: 980px) {
+	.nav {
+		padding-top: 20px
+	}
+	
+	.boardNameContainer {
+		width: 0%
+	}
+
+	.navBtnContainer {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
 	.nav button {
 		left: 0;
 		margin-left: auto;

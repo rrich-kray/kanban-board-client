@@ -101,12 +101,30 @@
 
 @media screen and (max-width: 768px) {
     .sidebar {
-        width: 100vw;
+        width: 100%;
         overflow-y: scroll;
     }
 
     .logo-container {
         width: 100%
+    }
+
+    .sidebar-header-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative
+    }
+
+    .all-boards {
+        margin-bottom: 25px;
+    }
+
+    .add-new-board-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative
     }
 
     @keyframes slide-in-from-top {
@@ -121,8 +139,12 @@
     }
 
     .boards-list {
-        display: none;
+        /* display: none; */
+        margin-top: 0;
         animation: 0.25s ease-out 0s 1 slide-in-from-top;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .logo-container {
@@ -151,5 +173,12 @@
         width: 40px;
         background: black;
         margin-top: 5px
+    }
+
+    .board-name-logo {
+        border-radius: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }

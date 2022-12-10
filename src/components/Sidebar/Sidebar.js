@@ -34,9 +34,11 @@ const Sidebar = ({
       <div className="logo-container">
         <img src={logo} alt="icon"></img>
       </div>
-      <span className="all-boards">
-        All Boards {boardData && `(${boardData.length})`}
-      </span>
+      <div class="sidebar-header-container">
+        <span className="all-boards">
+          All Boards {boardData && `(${boardData.length})`}
+        </span>
+      </div>
       <div className="boards-list">
         {boardData &&
           boardData.map((board) => (
@@ -65,17 +67,19 @@ const Sidebar = ({
             </div>
           ))}
       </div>
-      <span
-        style={{
-          marginLeft: "20px",
-          color: "white",
-          fontWeight: "bold",
-          cursor: "pointer",
-        }}
-        onClick={() => activateForm(!isFormActive)}
-      >
-        + Add New Board
-      </span>
+      <div className="add-new-board-container">
+        <span
+          style={{
+            marginLeft: "20px",
+            color: "white",
+            fontWeight: "bold",
+            cursor: "pointer",
+          }}
+          onClick={() => activateForm(!isFormActive)}
+        >
+          + Add New Board
+        </span>
+      </div>
       {isFormActive && (
         <div
           style={{

@@ -3,7 +3,6 @@ import { useAuth } from "../../contexts/AuthContext";
 import styles from "./styles.module.scss";
 
 const Nav = ({ isModalVisible, changeModalVisibility, boardData }) => {
-  console.log(boardData);
   return (
     <div className={styles.nav}>
       <div className={styles.boardNameContainer}>{boardData.name}</div>
