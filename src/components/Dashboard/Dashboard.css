@@ -1,6 +1,7 @@
 .dashboard {
 	height: 100%;
 	width: 100%;
+	max-width: 100%;
 	display: flex;
 	position: relative;
 	overflow: hidden;
@@ -15,8 +16,9 @@
 	flex: 6;
 }
 
+/*  board list can be hidden and expand on click */
 @media screen and (max-width: 768px) {
-	.app {
+	.dashboard {
 		display: flex;
 		flex-direction: column;
 		overflow-y: scroll;
