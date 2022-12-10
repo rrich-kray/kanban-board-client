@@ -19,7 +19,6 @@ const Task = ({ task, baseUrl }) => {
       body: JSON.stringify({ task_id: taskId }),
     })
       .then((data) => {
-        console.log(data);
         window.location.replace("/");
       })
       .catch((err) => {
