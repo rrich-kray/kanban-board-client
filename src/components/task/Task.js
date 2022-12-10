@@ -53,8 +53,9 @@ const Task = ({ task, baseUrl }) => {
         authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify({ task_id: task.id, progress: newTaskProgress }),
+    }).then((response) => {
+      window.location.replace("/");
     });
-    window.location.replace("/");
   };
 
   return (
