@@ -47,8 +47,8 @@ const Modal = ({
           onChange={handleChange}
         >
           {boardData &&
-            boardData.map((board) => (
-              <option name={board.id} value={board.id}>
+            boardData.map((board, i) => (
+              <option name={board.id} value={board.id} key={i}>
                 {board.name}
               </option>
             ))}
@@ -69,25 +69,27 @@ const Modal = ({
             Completed
           </option>
         </select>
-        <button
-          onClick={() => {
-            fetchData(
-              `${baseUrl}/kanban-board-full-stack/api/tasks`,
-              "POST",
-              headers,
-              {
-                title: formState.title,
-                description: formState.description,
-                progress: formState.progress,
-                board_id: formState.board_id,
-              }
-            );
-            // window.location.replace("/");
-          }}
-        >
-          Submit Task
-        </button>
       </form>
+      <button
+        className="add-post-btn"
+        onClick={() => {
+          fetchData(
+            `${baseUrl}/kanban-board-full-stack/api/tasks`,
+            "POST",
+            headers,
+            {
+              title: formState.title,
+              description: formState.description,
+              progress: formState.progress,
+              board_id: formState.board_id,
+            }
+          ).then((response) => {
+            window.location.replace("/");
+          });
+        }}
+      >
+        Submit Task
+      </button>
     </div>
   );
 };
