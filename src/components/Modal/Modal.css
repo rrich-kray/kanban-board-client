@@ -18,7 +18,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px
+    padding: 20px;
+    max-width: 75%
 }
 
 .add-post-form {
@@ -60,4 +61,17 @@
 
 .add-post-btn:hover {
     color: white
+}
+
+.close-btn-container {
+    position: absolute;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    top: 2.5%;
+    left: 2.5%   
+}
+
+.close-btn-container :nth-child(0) {
+    max-height: 100%
 }

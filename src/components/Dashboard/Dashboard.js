@@ -32,6 +32,7 @@ const Dashboard = ({ baseUrl, isModalVisible, changeModalVisibility }) => {
           <Modal
             baseUrl={baseUrl}
             boardData={boardData}
+            changeModalVisibility={changeModalVisibility}
             activeBoardIndex={activeBoardIndex}
             changeActiveBoardIndex={changeActiveBoardIndex}
           />

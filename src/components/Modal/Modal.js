@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { config } from "../../utils/helpers";
 import { fetchData, headers } from "../../utils/helpers";
+import CloseIcon from "@mui/icons-material/Close";
 import "./Modal.css";
 
 const Modal = ({
   boardData,
   baseUrl,
+  changeModalVisibility,
   activeBoardIndex,
   changeActiveBoardIndex,
 }) => {
@@ -27,6 +29,12 @@ const Modal = ({
 
   return (
     <div className="modal">
+      <div
+        className="close-btn-container"
+        onClick={() => changeModalVisibility(false)}
+      >
+        <CloseIcon />
+      </div>
       <form className="add-post-form">
         <input
           name="title"

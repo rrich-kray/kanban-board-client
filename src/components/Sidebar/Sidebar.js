@@ -17,6 +17,7 @@ const Sidebar = ({
 }) => {
   const [allBoards, setAllBoards] = useState();
   const [isFormActive, activateForm] = useState();
+  const [isBoardsListActive, setBoardsListActive] = useState(false);
   const [formState, setFormState] = useState({
     name: "",
   });
@@ -35,11 +36,17 @@ const Sidebar = ({
         <img src={logo} alt="icon"></img>
       </div>
       <div class="sidebar-header-container">
-        <span className="all-boards">
+        <span
+          className="all-boards"
+          onClick={() => setBoardsListActive(!isBoardsListActive)}
+        >
           All Boards {boardData && `(${boardData.length})`}
         </span>
       </div>
-      <div className="boards-list">
+      <div
+        className="boards-list"
+        style={{ display: !isBoardsListActive && "none" }}
+      >
         {boardData &&
           boardData.map((board) => (
             <div
@@ -82,6 +89,7 @@ const Sidebar = ({
       </div>
       {isFormActive && (
         <div
+          className="create-board-form"
           style={{
             display: "flex",
             alignItems: "center",

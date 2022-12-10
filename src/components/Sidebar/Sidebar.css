@@ -118,6 +118,7 @@
 
     .all-boards {
         margin-bottom: 25px;
+        margin-left: 0
     }
 
     .add-new-board-container {
@@ -125,6 +126,10 @@
         justify-content: center;
         align-items: center;
         position: relative
+    }
+
+    .create-board-form {
+        padding: 15px
     }
 
     @keyframes slide-in-from-top {
