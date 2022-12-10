@@ -57,8 +57,9 @@ const Sidebar = ({
                     "DELETE",
                     headers,
                     { board_id: board.id }
-                  );
-                  window.location.replace("/");
+                  ).then((response) => {
+                    window.location.replace("/");
+                  });
                 }}
               />
             </div>
@@ -101,8 +102,9 @@ const Sidebar = ({
                 "POST",
                 headers,
                 { name: formState.name }
-              );
-              window.location.replace("/");
+              ).then((response) => {
+                window.location.replace("/");
+              });
             }}
           >
             Submit

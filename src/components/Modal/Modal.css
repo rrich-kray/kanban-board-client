@@ -13,11 +13,16 @@
     background: rgba(100, 100, 100, 0.25);
     transition-property: all;
     transition: 0.25s;
-    animation: 0.25s ease-out 0s 1 slide-in
+    animation: 0.25s ease-out 0s 1 slide-in;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px
 }
 
 .add-post-form {
-    height: 100%;
+    height: 90%;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -40,7 +45,7 @@
     overflow: scroll
 }
 
-.add-post-form button {
+.add-post-btn {
     margin-top: 10px;
     background: none;
     border-radius: 5px;
@@ -53,6 +58,6 @@
     transition: 0.25s
 }
 
-.add-post-form button:hover {
+.add-post-btn:hover {
     color: white
 }
