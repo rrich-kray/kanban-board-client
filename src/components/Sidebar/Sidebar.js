@@ -45,7 +45,7 @@ const Sidebar = ({
       </div>
       <div
         className="boards-list"
-        style={{ display: !isBoardsListActive && "none" }}
+        // style={{ display: !isBoardsListActive && "none" }}
       >
         {boardData &&
           boardData.map((board) => (
@@ -75,17 +75,7 @@ const Sidebar = ({
           ))}
       </div>
       <div className="add-new-board-container">
-        <span
-          style={{
-            marginLeft: "20px",
-            color: "white",
-            fontWeight: "bold",
-            cursor: "pointer",
-          }}
-          onClick={() => activateForm(!isFormActive)}
-        >
-          + Add New Board
-        </span>
+        <span onClick={() => activateForm(!isFormActive)}>+ Add New Board</span>
       </div>
       {isFormActive && (
         <div

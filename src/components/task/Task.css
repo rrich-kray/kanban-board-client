@@ -73,6 +73,18 @@
 	color: gold;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 980px) {
+	.tasks {
+		margin-top: 10px
+	}
+	.task {
+		margin-top: 10px;
+		width: 50%;
+	}
+}
 
+@media screen and (max-width: 768px) {
+	.task {
+		width: 75%
+	}
 }
